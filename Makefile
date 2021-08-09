@@ -29,15 +29,16 @@ LIBFT_MAKE	=	Makefile
 #                               Sources filenames                              #
 ################################################################################
 
-SRCS		=	main.c exit.c utils.c init.c
+SRCS		=	main.c exit.c utils.c init.c philo_living.c display.c uitoa.c\
+				philo_action.c monitor.c
 
 ################################################################################
 #                              Commands and arguments                          #
 ################################################################################
 
 CC			=	@gcc
-CFLAGS		=	-Wall -Wextra -Werror -g3 -I$(HEADERS_DIR) -fsanitize=thread #-fsanitize=address
-LDFLAGS 	=	-L . -fsanitize=thread #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g3 -I$(HEADERS_DIR) -fsanitize=thread #-fsanitize=address #
+LDFLAGS 	=	-L . -fsanitize=thread #-fsanitize=address #
 RM			=	@rm -f
 
 ################################################################################

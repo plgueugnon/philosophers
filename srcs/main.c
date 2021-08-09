@@ -44,46 +44,57 @@ void	check_arg_validity(t_arg *arg)
 		|| !arg->max_meals)
 		ft_exit("Error: Invalid argument\n", error);
 	arg->ms_start = gettime();
-	// arg->nb_meals = 0;
+	arg->all_meals = 0;
 	arg->stop = do_nothing;
 	pthread_mutex_init(&arg->mtx_write, NULL);
+	pthread_mutex_init(&arg->mtx_stop, NULL);
+	pthread_mutex_init(&arg->mtx_time, NULL);
+	pthread_mutex_init(&arg->mtx_meals, NULL);
 }
 
-void	parse_arg(int argc, char **argv, t_ptr *ptr)
+void	parse_arg(int argc, char **argv, t_arg *arg)
 {
 	int i;
-	t_arg	arg;
+	// t_arg	arg;
 
 	i = 1;
-	ptr->a = &arg;
+	// ptr->a = &arg;
 	while (i < argc)
 	{
-		get_values(argv[i], &arg, i);
+		get_values(argv[i], arg, i);
 		i++;
 	}
-	check_arg_validity(&arg);
-	printf("arg 1 %u\n", ptr->a->nb);
-	printf("arg 2 %u\n", ptr->a->ms_die);
-	printf("arg 3 %u\n", ptr->a->ms_eat);
-	printf("arg 4 %u\n", ptr->a->ms_sleep);
-	printf("arg 5 %d\n", ptr->a->max_meals);
+	check_arg_validity(arg);
+	printf("arg 1 %u\n", arg->nb);
+	// printf("arg 1 %u\n", arg.nb);
+	printf("arg 2 %u\n", arg->ms_die);
+	printf("arg 3 %u\n", arg->ms_eat);
+	printf("arg 4 %u\n", arg->ms_sleep);
+	printf("arg 5 %d\n", arg->max_meals);
 
-	ft_exit("It s OK\n", no_error);
+	// ft_exit("It s OK\n", no_error);
 }
-
 
 int	main(int argc, char **argv)
 {
-	t_ptr	ptr;
+	// t_ptr	ptr;
+	t_arg		arg;
 	t_philo	*philo;
+
+	philo = NULL;
 	if (argc >= 5 && argc <= 6)
 	{
-		parse_arg(argc, argv, &ptr);
-		philo = malloc(sizeof(t_philo *) * ptr.a->nb);
+		parse_arg(argc, argv, &arg);
+		philo = (t_philo *)malloc(sizeof(t_philo) * arg.nb);
 		if (!philo)
 			ft_exit("Error: Malloc failed\n", error);
-		init_philo(philo, &ptr);
-		return (1);
+		// printf("check %u\n", arg.nb);
+		// printf("check %u\n", ptr.a->nb);
+		// printf("check arg %p\n", &arg);
+		// printf("check philo %p\n", philo);
+		init_philo(philo, &arg);
+		start_philo(philo, &arg);
+		ctrl_thread(philo, &arg);
 	}
 	ft_exit("Error: Invalid number of arg\n", error);
     return (0);
