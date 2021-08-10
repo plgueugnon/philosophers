@@ -55,31 +55,20 @@ void	check_arg_validity(t_arg *arg)
 void	parse_arg(int argc, char **argv, t_arg *arg)
 {
 	int i;
-	// t_arg	arg;
 
 	i = 1;
-	// ptr->a = &arg;
 	while (i < argc)
 	{
 		get_values(argv[i], arg, i);
 		i++;
 	}
 	check_arg_validity(arg);
-	// printf("arg 1 %u\n", arg->nb);
-	// // printf("arg 1 %u\n", arg.nb);
-	// printf("arg 2 %u\n", arg->ms_die);
-	// printf("arg 3 %u\n", arg->ms_eat);
-	// printf("arg 4 %u\n", arg->ms_sleep);
-	// printf("arg 5 %d\n", arg->max_meals);
-
-	// ft_exit("It s OK\n", no_error);
 }
 
 int	main(int argc, char **argv)
 {
-	// t_ptr	ptr;
 	t_arg		arg;
-	t_philo	*philo;
+	t_philo		*philo;
 
 	philo = NULL;
 	if (argc >= 5 && argc <= 6)
@@ -88,10 +77,6 @@ int	main(int argc, char **argv)
 		philo = (t_philo *)malloc(sizeof(t_philo) * arg.nb);
 		if (!philo)
 			ft_exit("Error: Malloc failed\n", error);
-		// printf("check %u\n", arg.nb);
-		// printf("check %u\n", ptr.a->nb);
-		// printf("check arg %p\n", &arg);
-		// printf("check philo %p\n", philo);
 		init_philo(philo, &arg);
 		start_philo(philo, &arg);
 		ctrl_thread(philo, &arg);

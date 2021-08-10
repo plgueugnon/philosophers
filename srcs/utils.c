@@ -1,5 +1,14 @@
 #include "philo.h"
 
+int	ft_numlen(int n)
+{
+	if (n < 0)
+		n *= -1;
+	if (n < 10)
+		return (1);
+	return (ft_numlen(n / 10) + 1);
+}
+
 size_t	ft_strlen(const char *s)
 {
 	if (*s == '\0')

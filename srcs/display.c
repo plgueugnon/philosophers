@@ -1,5 +1,35 @@
 #include "philo.h"
 
+static void	ft_fill_str(char *str, unsigned int n, int size)
+{
+	str[size] = '\0';
+	size--;
+	while (n >= 10)
+	{
+		str[size] = (n % 10) + 48;
+		size--;
+		n /= 10;
+	}
+	while (n < 10 && size >= 0)
+	{
+		str[size] = (n % 10) + 48;
+		size--;
+	}
+}
+
+char	*ft_uitoa(unsigned int n)
+{
+	char	*str;
+	int		size;
+
+	size = ft_numlen(n);
+	str = malloc(sizeof(char) * (size + 1));
+	if (str == NULL)
+		return (0);
+	ft_fill_str(str, n, size);
+	return (str);
+}
+
 static char	*ft_strcpy(char *dst, char *src)
 {
 	int	i;
@@ -52,7 +82,7 @@ void	print_activity(t_philo *philo, char *status)
 		return ;
 	time = gettime() - philo->a->ms_start;
 	tmp = ft_strjoin(ft_uitoa(time), " philo # ");
-	tmp2 = ft_strjoin(tmp, ft_uitoa(philo->id)); // va y avoir une fuite ici a cause uitoa
+	tmp2 = ft_strjoin(tmp, ft_uitoa(philo->id));
 	free(tmp);
 	tmp = ft_strjoin(tmp2, " ");
 	free(tmp2);
