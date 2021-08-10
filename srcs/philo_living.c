@@ -34,7 +34,7 @@ void	*godess_of_death(void *value)
 	// 
 	// time = gettime();
 	// ms_sleep(philo->a->ms_die * 1000 + 1); // a tester
-	usleep(philo->a->ms_die + 1 * 1000);
+	usleep(philo->a->ms_die * 1000 + 1);
 	pthread_mutex_lock(&(philo->a->mtx_time));
 	if (philo->alive && !check_status2(philo, philo->a) &&
 		gettime() - philo->ms_last_meal > philo->ms_die)
@@ -87,7 +87,7 @@ void	*chilling_like_a_philo(void *value)
 			// if (arg->all_meals >= (unsigned int)arg->max_meals)
 			// {
 				// print_activity(philo, "all have eaten\n"); //debug
-			pthread_detach(death);
+			// pthread_detach(death);
 			// 	arg->stop = all_have_eaten;
 				// return NULL;
 			// }

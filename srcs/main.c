@@ -65,12 +65,12 @@ void	parse_arg(int argc, char **argv, t_arg *arg)
 		i++;
 	}
 	check_arg_validity(arg);
-	printf("arg 1 %u\n", arg->nb);
-	// printf("arg 1 %u\n", arg.nb);
-	printf("arg 2 %u\n", arg->ms_die);
-	printf("arg 3 %u\n", arg->ms_eat);
-	printf("arg 4 %u\n", arg->ms_sleep);
-	printf("arg 5 %d\n", arg->max_meals);
+	// printf("arg 1 %u\n", arg->nb);
+	// // printf("arg 1 %u\n", arg.nb);
+	// printf("arg 2 %u\n", arg->ms_die);
+	// printf("arg 3 %u\n", arg->ms_eat);
+	// printf("arg 4 %u\n", arg->ms_sleep);
+	// printf("arg 5 %d\n", arg->max_meals);
 
 	// ft_exit("It s OK\n", no_error);
 }
