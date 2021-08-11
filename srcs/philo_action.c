@@ -2,8 +2,16 @@
 
 void	philo_take_forks(t_philo *philo)
 {
-    pthread_mutex_lock(&philo->right_fork);
-    pthread_mutex_lock(philo->left_fork);
+	if (philo->id == 1)
+	{
+    	pthread_mutex_lock(philo->left_fork);
+		pthread_mutex_lock(&philo->right_fork);
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->right_fork);
+		pthread_mutex_lock(philo->left_fork);
+	}
 	pthread_mutex_lock(&(philo->a->mtx_write));
 	print_activity(philo, "has taken a fork\n");
 	print_activity(philo, "has taken a fork\n");

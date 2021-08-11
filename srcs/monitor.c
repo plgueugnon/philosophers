@@ -22,34 +22,35 @@ void	clear_thread_n_mutex(t_philo *philo, t_arg *arg)
 	while (i < arg->nb)
 	{
 		pthread_join(philo[i].thread, NULL);
+		i++;
+	}
+	i = 0;
+	while (i < arg->nb)
+	{
 		pthread_mutex_destroy(&philo[i].right_fork);
 		i++;
 	}
-	pthread_mutex_destroy(&arg->mtx_write);
-	pthread_mutex_destroy(&arg->mtx_meals);
-	pthread_mutex_destroy(&arg->mtx_time);
-	pthread_mutex_destroy(&arg->mtx_stop);
 	free(philo);
 }
 
 int		show_must_go_on(t_philo *philo, t_arg *arg)
 {
-	pthread_mutex_lock(&(philo->a->mtx_stop));
 	pthread_mutex_lock(&(philo->a->mtx_meals));
+	pthread_mutex_lock(&(philo->a->mtx_stop));	
 	if (arg->stop == one_died)
 	{
-		pthread_mutex_unlock(&(philo->a->mtx_meals));
 		pthread_mutex_unlock(&(philo->a->mtx_stop));
+		pthread_mutex_unlock(&(philo->a->mtx_meals));		
 		return (one_died);
 	}
 	if (arg->stop == all_have_eaten)
 	{
-		pthread_mutex_unlock(&(philo->a->mtx_stop));
 		pthread_mutex_unlock(&(philo->a->mtx_meals));
+		pthread_mutex_unlock(&(philo->a->mtx_stop));		
 		return (all_have_eaten);
 	}
-	pthread_mutex_unlock(&(philo->a->mtx_meals));
 	pthread_mutex_unlock(&(philo->a->mtx_stop));
+	pthread_mutex_unlock(&(philo->a->mtx_meals));
 	return (0);
 }
 

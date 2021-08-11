@@ -20,6 +20,7 @@ void	*godess_of_death(void *value)
 		philo->a->stop = one_died;
 		pthread_mutex_unlock(&(philo->a->mtx_stop));
 		pthread_mutex_unlock(&(philo->a->mtx_write));
+		return (NULL);
 	}
 	pthread_mutex_unlock(&(philo->a->mtx_time));
 	return (NULL);

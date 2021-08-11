@@ -76,14 +76,19 @@ void	print_activity(t_philo *philo, char *status)
 {
 	char			*tmp;
 	char			*tmp2;
+	char			*stru;
 	unsigned int	time;
 	
 	if (check_status(philo->a))
 		return ;
 	time = gettime() - philo->a->ms_start;
-	tmp = ft_strjoin(ft_uitoa(time), " philo # ");
-	tmp2 = ft_strjoin(tmp, ft_uitoa(philo->id));
+	stru = ft_uitoa(time);
+	tmp = ft_strjoin(stru, " philo # ");
+	free(stru);
+	stru = ft_uitoa(philo->id);
+	tmp2 = ft_strjoin(tmp, stru);
 	free(tmp);
+	free(stru);
 	tmp = ft_strjoin(tmp2, " ");
 	free(tmp2);
 	tmp2 = ft_strjoin(tmp, status);
