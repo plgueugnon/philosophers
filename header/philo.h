@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgueugno <pgueugno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 12:38:23 by pgueugno          #+#    #+#             */
+/*   Updated: 2021/08/11 12:38:27 by pgueugno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <pthread.h>
-#include <limits.h>
-#include <sys/time.h>
-#include "struct.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <pthread.h>
+# include <limits.h>
+# include <sys/time.h>
+# include "struct.h"
 
 int				ft_numlen(int n);
 size_t			ft_strlen(const char *s);
@@ -33,6 +45,6 @@ void			philo_think(t_philo *philo);
 
 void			ctrl_thread(t_philo *philo, t_arg *arg);
 void			stop_show(t_philo *philo, t_arg *arg, int ret);
-void    		ft_exit(char *s_err, int err);
+void			ft_exit(char *s_err, int err);
 
 #endif

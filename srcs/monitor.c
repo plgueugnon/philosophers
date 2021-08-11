@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   monitor.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgueugno <pgueugno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 13:00:54 by pgueugno          #+#    #+#             */
+/*   Updated: 2021/08/11 13:00:56 by pgueugno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void    ft_exit(char *s_err, int err)
+void	ft_exit(char *s_err, int err)
 {
 	if (!err)
 	{
@@ -33,20 +45,22 @@ void	clear_thread_n_mutex(t_philo *philo, t_arg *arg)
 	free(philo);
 }
 
-int		show_must_go_on(t_philo *philo, t_arg *arg)
+int	show_must_go_on(t_philo *philo, t_arg *arg, int *ret)
 {
 	pthread_mutex_lock(&(philo->a->mtx_meals));
-	pthread_mutex_lock(&(philo->a->mtx_stop));	
+	pthread_mutex_lock(&(philo->a->mtx_stop));
 	if (arg->stop == one_died)
 	{
 		pthread_mutex_unlock(&(philo->a->mtx_stop));
-		pthread_mutex_unlock(&(philo->a->mtx_meals));		
+		pthread_mutex_unlock(&(philo->a->mtx_meals));
+		*ret = one_died;
 		return (one_died);
 	}
 	if (arg->stop == all_have_eaten)
 	{
 		pthread_mutex_unlock(&(philo->a->mtx_meals));
-		pthread_mutex_unlock(&(philo->a->mtx_stop));		
+		pthread_mutex_unlock(&(philo->a->mtx_stop));
+		*ret = all_have_eaten;
 		return (all_have_eaten);
 	}
 	pthread_mutex_unlock(&(philo->a->mtx_stop));
@@ -70,7 +84,7 @@ void	ctrl_thread(t_philo *philo, t_arg *arg)
 	int	ret;
 
 	ret = 0;
-	while(!(ret = show_must_go_on(philo, arg)))
+	while (!(show_must_go_on(philo, arg, &ret)))
 		usleep(1000);
 	stop_show(philo, arg, ret);
 }

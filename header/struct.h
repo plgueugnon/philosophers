@@ -1,20 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgueugno <pgueugno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 12:36:42 by pgueugno          #+#    #+#             */
+/*   Updated: 2021/08/11 12:36:55 by pgueugno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef enum	e_stop
+typedef enum e_stop
 {
 	do_nothing,
 	one_died,
 	all_have_eaten,
 }				t_stop;
 
-typedef enum	e_err
+typedef enum e_err
 {
 	no_error,
 	error,
 }				t_err;
 
-typedef struct	s_arg
+typedef struct s_arg
 {
 	unsigned int		nb;
 	unsigned int		ms_die;
@@ -30,7 +42,7 @@ typedef struct	s_arg
 	pthread_mutex_t		mtx_meals;
 }				t_arg;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t		thread;
 	pthread_mutex_t	right_fork;

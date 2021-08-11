@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgueugno <pgueugno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 12:47:34 by pgueugno          #+#    #+#             */
+/*   Updated: 2021/08/11 12:47:36 by pgueugno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	is_it_a_valid_number(char *s)
@@ -6,7 +18,7 @@ int	is_it_a_valid_number(char *s)
 	long	r;
 
 	i = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if (ft_isdigit(s[i]))
 			i++;
@@ -54,7 +66,7 @@ void	check_arg_validity(t_arg *arg)
 
 void	parse_arg(int argc, char **argv, t_arg *arg)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < argc)
@@ -82,5 +94,5 @@ int	main(int argc, char **argv)
 		ctrl_thread(philo, &arg);
 	}
 	ft_exit("Error: Invalid number of arg\n", error);
-    return (0);
+	return (0);
 }

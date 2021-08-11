@@ -1,34 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgueugno <pgueugno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 12:43:17 by pgueugno          #+#    #+#             */
+/*   Updated: 2021/08/11 12:43:21 by pgueugno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-int		check_status(t_arg *arg)
+int	check_status(t_arg *arg)
 {
-		pthread_mutex_lock(&(arg->mtx_stop));
-		if (arg->stop)
-		{
-			pthread_mutex_unlock(&(arg->mtx_stop));
-			return (1);
-		}
+	pthread_mutex_lock(&(arg->mtx_stop));
+	if (arg->stop)
+	{
 		pthread_mutex_unlock(&(arg->mtx_stop));
-		return (0);
+		return (1);
+	}
+	pthread_mutex_unlock(&(arg->mtx_stop));
+	return (0);
 }
 
-int		check_status2(t_philo *philo, t_arg *arg)
+int	check_status2(t_philo *philo, t_arg *arg)
 {
-		pthread_mutex_lock(&(arg->mtx_stop));
-		if (arg->stop)
-		{
-			pthread_mutex_unlock(&(arg->mtx_stop));
-			return (1);
-		}
-		philo->alive = 0;
+	pthread_mutex_lock(&(arg->mtx_stop));
+	if (arg->stop)
+	{
 		pthread_mutex_unlock(&(arg->mtx_stop));
-		return (0);
+		return (1);
+	}
+	philo->alive = 0;
+	pthread_mutex_unlock(&(arg->mtx_stop));
+	return (0);
 }
 
 unsigned int	gettime(void)
 {
 	unsigned int	time;
-	struct timeval ctime;
+	struct timeval	ctime;
 
 	time = 0;
 	if (gettimeofday(&ctime, NULL))
@@ -42,7 +54,7 @@ void	init_philo(t_philo *philo, t_arg *arg)
 	unsigned int	i;
 
 	i = 0;
-	while(i < arg->nb)
+	while (i < arg->nb)
 	{
 		philo[i].id = i + 1;
 		philo[i].alive = 1;

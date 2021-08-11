@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_living.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgueugno <pgueugno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 13:04:32 by pgueugno          #+#    #+#             */
+/*   Updated: 2021/08/11 13:04:34 by pgueugno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	*godess_of_death(void *value)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)value;
 	if (philo->a->max_meals != -1 && philo->a->ms_die > (philo->a->nb * 100))
@@ -10,8 +22,8 @@ void	*godess_of_death(void *value)
 	else
 		usleep(philo->a->ms_die * 1000);
 	pthread_mutex_lock(&(philo->a->mtx_time));
-	if (philo->alive && !check_status2(philo, philo->a) &&
-		gettime() - philo->ms_last_meal > philo->ms_die)
+	if (philo->alive && !check_status2(philo, philo->a)
+		&& gettime() - philo->ms_last_meal > philo->ms_die)
 	{
 		pthread_mutex_unlock(&(philo->a->mtx_time));
 		pthread_mutex_lock(&(philo->a->mtx_write));
@@ -81,7 +93,7 @@ void	start_philo(t_philo *philo, t_arg *arg)
 	while (i < arg->nb)
 	{
 		if (pthread_create(&(philo[i].thread), NULL,
-			chilling_like_a_philo, &(philo[i])))
+				chilling_like_a_philo, &(philo[i])))
 			stop_show(philo, arg, 3);
 		usleep(10);
 		i++;

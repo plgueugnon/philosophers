@@ -37,8 +37,8 @@ SRCS		=	main.c utils.c init.c philo_living.c display.c\
 ################################################################################
 
 CC			=	@gcc
-CFLAGS		=	-Wall -Wextra -Werror -g3 -I$(HEADERS_DIR) #-lpthread #-fsanitize=thread #-fsanitize=address
-LDFLAGS 	=	-L . #-lpthread #-fsanitize=thread #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g3 -I$(HEADERS_DIR) #-fsanitize=thread #-lpthread
+LDFLAGS 	=	-L . #-fsanitize=thread #-lpthread
 RM			=	@rm -f
 
 ################################################################################

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_action.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgueugno <pgueugno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 13:03:08 by pgueugno          #+#    #+#             */
+/*   Updated: 2021/08/11 13:03:10 by pgueugno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	philo_take_forks(t_philo *philo)
 {
 	if (philo->id == 1)
 	{
-    	pthread_mutex_lock(philo->left_fork);
+		pthread_mutex_lock(philo->left_fork);
 		pthread_mutex_lock(&philo->right_fork);
 	}
 	else

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgueugno <pgueugno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/11 12:40:16 by pgueugno          #+#    #+#             */
+/*   Updated: 2021/08/11 12:40:31 by pgueugno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static void	ft_fill_str(char *str, unsigned int n, int size)
@@ -78,7 +90,7 @@ void	print_activity(t_philo *philo, char *status)
 	char			*tmp2;
 	char			*stru;
 	unsigned int	time;
-	
+
 	if (check_status(philo->a))
 		return ;
 	time = gettime() - philo->a->ms_start;
