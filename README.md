@@ -24,4 +24,4 @@
 
 
 ### Warning
-As this project manipulates threads and mutex this project might work or even not work work at all depending on the OS you use.
+As this project manipulates threads and mutex this project might not work well or even not work work at all depending on the OS you use.
